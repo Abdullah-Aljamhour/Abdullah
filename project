@@ -1,0 +1,57 @@
+
+public class LinkedListOfLabs {
+
+	private Node head;
+	
+	public LinkedListOfLabs() {
+		head=null;
+	}
+	public void insertAtFront (Lab l) {
+		Node newNode =new Node (l);
+		if(head==null) {
+			head=newNode;
+		}
+		else {
+			newNode.setNext(head);
+			head=newNode;
+		}
+	}
+	public void insertAtBack (Lab l ) {
+		Node newNode = new Node (l);
+		Node current = head;
+		if(head==null) {
+			head=newNode;
+		}
+		else {
+		while(current.getNext()!=null) {
+			if(current.getNext()==null) {
+				current.setNext(newNode);
+			}
+			current= current.getNext();
+		}
+		
+	}
+	}
+	public int countLabs(int s) {
+		int count=0;
+		Node current = head;
+		while(current.getNext() != null) {
+			if( current.getData().getNbPrinter(s) > 0 ) {
+				count++;
+			}
+		current = current.getNext();
+	}
+		return count;
+	}
+	public void split (LinkedListOfLabs labList1 , LinkedListOfLabs labList2 , int s) {
+		Node current = head;
+		while(current.getNext() != null) {
+			if( current.getData().getNbPrinter(s) > 0)
+				labList1.insertAtFront(current.getData());
+			else {
+				labList2.insertAtBack(current.getData());
+			}
+			current = current.getNext();
+		}
+	}	
+}
